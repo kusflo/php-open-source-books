@@ -4,8 +4,9 @@
   "license": "MIT",
   "description": "Proyecto para obtener libros open source",
   "require": {
-    "php": "^7.4"
-
+    "php": "^7.4",
+    "guzzlehttp/guzzle": "^7.0",
+    "ext-json": "*"
   },
   "require-dev": {
 
