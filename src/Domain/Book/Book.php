@@ -4,8 +4,6 @@
 namespace App\Domain\Book;
 
 
-use Exception;
-
 final class Book
 {
     private string $id;
@@ -26,7 +24,6 @@ final class Book
     public function __construct(string $id, string $title, string $description,
                                 string $url, string $author, string $language)
     {
-        $this->checkBook($id);
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
@@ -35,12 +32,9 @@ final class Book
         $this->language = $language;
     }
 
-    private function checkBook(string $id)
+    public function renameTitle(string $newName)
     {
-        if(!is_numeric($id)){
-            new Exception("Can't make a correct book");
-        }
-
+        $this->title = $newName;
     }
 
 

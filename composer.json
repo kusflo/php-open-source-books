@@ -5,8 +5,9 @@
   "description": "Proyecto para obtener libros open source",
   "require": {
     "php": "^7.4",
+    "ext-json": "*",
     "guzzlehttp/guzzle": "^7.0",
-    "ext-json": "*"
+    "symfony/console": "^5.1"
   },
   "require-dev": {
 

@@ -3,6 +3,8 @@
 
 use App\Application\Search\Book\SearchBookById;
 use App\Application\Search\Book\SearchBooksByTitle;
+use App\Application\Update\Book\RenameBook;
+use App\Domain\Exception\MyException;
 use App\Infrastructure\Book\BookRepoOpenLibra;
 
 
@@ -11,6 +13,7 @@ require __DIR__ . '/vendor/autoload.php';
 try {
 
     $repo = new BookRepoOpenLibra();
+    $idBook = '13687';
 
     /**
      * Use Cases
@@ -25,13 +28,17 @@ try {
     /**
      * Get Book By Id
      */
-    $book = (new SearchBookById($repo, '13687'))->task();
+    $book = (new SearchBookById($repo, $idBook))->task();
 
+    /**
+     * Rename Book
+     */
+    $newName = 'Php Book';
+    $book = (new RenameBook($repo, $idBook, $newName))->task();
+    depureObject($book);
 
-
-
-} catch (Exception $e) {
-    echo $e->getMessage();
+} catch (MyException $e) {
+    echo $e->getInfoError();
 }
 
 function depureObject($obj) {

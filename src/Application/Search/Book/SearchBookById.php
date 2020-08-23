@@ -5,6 +5,7 @@ namespace App\Application\Search\Book;
 
 
 use App\Domain\Book\Book;
+use App\Domain\Book\BookFinder;
 use App\Domain\Book\BookRepository;
 
 final class SearchBookById
@@ -26,7 +27,7 @@ final class SearchBookById
 
     public function task(): ?Book
     {
-        return $this->repo->getById($this->id);
+        return (new BookFinder($this->repo))->__invoke($this->id);
     }
 
 
