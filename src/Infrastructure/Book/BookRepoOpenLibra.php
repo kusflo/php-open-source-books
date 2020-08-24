@@ -3,7 +3,13 @@
 namespace App\Infrastructure\Book;
 
 use App\Domain\Book\Book;
+use App\Domain\Book\BookAuthor;
+use App\Domain\Book\BookDescription;
+use App\Domain\Book\BookId;
+use App\Domain\Book\BookLanguage;
 use App\Domain\Book\BookRepository;
+use App\Domain\Book\BookTitle;
+use App\Domain\Book\BookUrl;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
@@ -55,13 +61,14 @@ final class BookRepoOpenLibra implements BookRepository
      */
     private function generatetBook($obj): Book
     {
+
         return new Book(
-            $obj->ID,
-            $obj->title,
-            $obj->content_short,
-            $obj->url_download,
-            $obj->author,
-            $obj->language
+            new BookID($obj->ID),
+            new BookTitle($obj->title),
+            new BookDescription($obj->content_short),
+            new BookUrl($obj->url_download),
+            new BookAuthor($obj->author),
+            new BookLanguage($obj->language)
         );
     }
 }

@@ -6,23 +6,24 @@ namespace App\Domain\Book;
 
 final class Book
 {
-    private string $id;
-    private string $title;
-    private string $description;
-    private string $url;
-    private string $author;
-    private string $language;
-        /**
+    private BookId $id;
+    private BookTitle $title;
+    private BookDescription $description;
+    private BookUrl $url;
+    private BookAuthor $author;
+    private BookLanguage $language;
+
+    /**
      * Book constructor.
-     * @param string $id
-     * @param string $title
-     * @param string $description
-     * @param string $url
-     * @param string $author
-     * @param string $language
+     * @param BookId $id
+     * @param BookTitle $title
+     * @param BookDescription $description
+     * @param BookUrl $url
+     * @param BookAuthor $author
+     * @param BookLanguage $language
      */
-    public function __construct(string $id, string $title, string $description,
-                                string $url, string $author, string $language)
+    public function __construct(BookId $id, BookTitle $title, BookDescription $description,
+                                BookUrl $url, BookAuthor $author, BookLanguage $language)
     {
         $this->id = $id;
         $this->title = $title;
@@ -32,9 +33,16 @@ final class Book
         $this->language = $language;
     }
 
+    public static function create(BookId $id, BookTitle $title, BookDescription $description,
+                                  BookUrl $url, BookAuthor $author, BookLanguage $language): Book
+    {
+        $book = new self($id, $title, $description, $url, $author, $language);
+        return $book;
+    }
+
     public function renameTitle(string $newName)
     {
-        $this->title = $newName;
+        $this->title = new BookTitle($newName);
     }
 
 
