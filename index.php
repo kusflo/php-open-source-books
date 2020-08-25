@@ -3,7 +3,7 @@
 
 use App\Application\Search\Book\SearchBookById;
 use App\Application\Search\Book\SearchBooksByTitle;
-use App\Application\Update\Book\RenameBook;
+use App\Application\Update\Book\UpdateTitleBook;
 use App\Domain\Exception\MyException;
 use App\Infrastructure\Book\BookRepoOpenLibra;
 
@@ -33,8 +33,8 @@ try {
     /**
      * Rename Book
      */
-    $newName = 'Php Book';
-    $book = (new RenameBook($repo, $idBook, $newName))->task();
+    $title = 'Php Book';
+    $book = (new UpdateTitleBook($repo, $idBook, $title))->task();
     depureObject($book);
 
 } catch (MyException $e) {

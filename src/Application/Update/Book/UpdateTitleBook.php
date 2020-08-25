@@ -6,32 +6,34 @@ namespace App\Application\Update\Book;
 
 use App\Domain\Book\Book;
 use App\Domain\Book\BookFinder;
+use App\Domain\Book\BookId;
 use App\Domain\Book\BookRepository;
+use App\Domain\Book\BookTitle;
 
-class RenameBook
+class UpdateTitleBook
 {
 
     private BookRepository $repo;
-    private string $idBook;
-    private string $newName;
+    private BookId $idBook;
+    private BookTitle $title;
 
     /**
      * RenameBook constructor.
      * @param BookRepository $repo
-     * @param string $idBook
-     * @param string $newName
+     * @param int $idBook
+     * @param string $title
      */
-    public function __construct(BookRepository $repo, string $idBook, string $newName)
+    public function __construct(BookRepository $repo, int $idBook, string $title)
     {
         $this->repo = $repo;
-        $this->idBook = $idBook;
-        $this->newName = $newName;
+        $this->idBook = new BookId($idBook);
+        $this->title = new BookTitle($title);
     }
 
     public function task (): Book
     {
         $book = (new BookFinder($this->repo))->__invoke($this->idBook);
-        $book->renameTitle($this->newName);
+        $book->updateTitle($this->title);
         return $book;
     }
 

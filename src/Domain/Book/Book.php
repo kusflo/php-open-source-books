@@ -40,9 +40,9 @@ final class Book
         return $book;
     }
 
-    public function renameTitle(string $newName)
+    public function updateTitle(BookTitle $title)
     {
-        $this->title = new BookTitle($newName);
+        $this->title = $title;
     }
 
 
