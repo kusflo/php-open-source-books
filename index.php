@@ -10,6 +10,7 @@ use App\Infrastructure\Book\BookRepoOpenLibra;
 
 require __DIR__ . '/vendor/autoload.php';
 
+
 try {
 
     $repo = new BookRepoOpenLibra();

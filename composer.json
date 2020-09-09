@@ -11,13 +11,7 @@
     "symfony/console": "^5.1"
   },
   "require-dev": {
-
-  },
-  "config": {
-    "preferred-install": {
-      "*": "dist"
-    },
-    "sort-packages": true
+    "phpunit/phpunit": "9.2.2"
   },
   "autoload": {
     "psr-4": {
